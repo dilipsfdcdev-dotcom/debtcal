@@ -8,7 +8,7 @@ const sampleDebtData = [
     { id: 1, type: 'HAND LOAN', name: 'Rakshith linga', amount: 5000000, interestPM: 150000, clearBy: '', status: 'Pending' },
     { id: 2, type: 'HAND LOAN', name: 'Ramesh pittala', amount: 3000000, interestPM: 300000, clearBy: '', status: 'Pending' },
     { id: 3, type: 'HAND LOAN', name: 'Ravi (Seema)', amount: 1000000, interestPM: 60000, clearBy: '', status: 'Pending' },
-    { id: 4, type: 'HAND LOAN', name: 'Bhaskar reddy', amount: 2000000, interestPM: 1000000, clearBy: '', status: 'Pending' },
+    { id: 4, type: 'HAND LOAN', name: 'Bhaskar reddy', amount: 2000000, interestPM: 100000, clearBy: '', status: 'Pending' },
     { id: 5, type: 'HAND LOAN', name: 'Shyam USDT', amount: 2000000, interestPM: 80000, clearBy: '', status: 'Pending' },
     { id: 6, type: 'HAND LOAN', name: 'Ranjana', amount: 1500000, interestPM: 0, clearBy: '', status: 'Pending' },
     { id: 7, type: 'PL', name: 'Bajaj OD', amount: 1000000, interestPM: 12500, clearBy: '', status: 'Pending' },
@@ -18,7 +18,9 @@ const sampleDebtData = [
     { id: 11, type: 'CC', name: 'ONE Card', amount: 300000, interestPM: 0, clearBy: '', status: 'Pending' },
     { id: 12, type: 'GOLD LOAN', name: 'Wife', amount: 4500000, interestPM: 82000, clearBy: '', status: 'Pending' },
     { id: 13, type: 'GOLD LOAN', name: 'Mom', amount: 550000, interestPM: 7000, clearBy: '', status: 'Pending' },
-    { id: 14, type: 'GOLD LOAN', name: 'Dad', amount: 1000000, interestPM: 15000, clearBy: '', status: 'Pending' }
+    { id: 14, type: 'GOLD LOAN', name: 'Dad', amount: 1000000, interestPM: 15000, clearBy: '', status: 'Pending' },
+    { id: 15, type: 'PL', name: 'Lendit', amount: 291933, interestPM: 36492, clearBy: '', status: 'Pending' },
+    { id: 16, type: 'PL', name: 'FIBE', amount: 181571, interestPM: 28805, clearBy: '', status: 'Pending' },
 ];
 
 // Sample income data
