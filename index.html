@@ -20,13 +20,13 @@
                     <h3>Monthly Interest</h3>
                     <p id="monthlyInterest">₹0</p>
                 </div>
-                <div class="card pending-count">
-                    <h3>Pending Debts</h3>
-                    <p id="pendingCount">0</p>
+                <div class="card total-income">
+                    <h3>Monthly Income</h3>
+                    <p id="totalIncome">₹0</p>
                 </div>
-                <div class="card cleared-count">
-                    <h3>Cleared Debts</h3>
-                    <p id="clearedCount">0</p>
+                <div class="card pnl-card">
+                    <h3>Monthly P&L</h3>
+                    <p id="monthlyPnL">₹0</p>
                 </div>
             </div>
         </header>
@@ -43,6 +43,61 @@
                 </div>
             </section>
 
+            <section class="income-section">
+                <div class="income-container">
+                    <div class="income-header">
+                        <h3>Income Sources</h3>
+                        <button class="btn-primary btn-small" id="addIncomeBtn">+ Add Income</button>
+                    </div>
+                    <div class="income-form" id="incomeForm" style="display: none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="incomeSource">Source Name</label>
+                                <input type="text" id="incomeSource" placeholder="e.g., Salary, Business">
+                            </div>
+                            <div class="form-group">
+                                <label for="incomeAmount">Monthly Amount (₹)</label>
+                                <input type="number" id="incomeAmount" placeholder="e.g., 50000">
+                            </div>
+                            <div class="form-group form-actions">
+                                <button type="button" class="btn-primary" id="saveIncomeBtn">Save</button>
+                                <button type="button" class="btn-secondary" id="cancelIncomeBtn">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="income-table-wrapper">
+                        <table id="incomeTable">
+                            <thead>
+                                <tr>
+                                    <th>Source</th>
+                                    <th>Monthly Amount</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="incomeTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="pnl-container">
+                    <h3>Profit & Loss Summary</h3>
+                    <div class="pnl-details">
+                        <div class="pnl-row income-row">
+                            <span>Total Monthly Income</span>
+                            <span id="pnlIncome">₹0</span>
+                        </div>
+                        <div class="pnl-row expense-row">
+                            <span>Total Monthly Interest (Expense)</span>
+                            <span id="pnlExpense">₹0</span>
+                        </div>
+                        <div class="pnl-row net-row" id="pnlNetRow">
+                            <span>Net Monthly P&L</span>
+                            <span id="pnlNet">₹0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="form-section">
                 <h3 id="formTitle">Add New Debt</h3>
                 <form id="debtForm">
@@ -53,6 +108,7 @@
                             <select id="debtType" required>
                                 <option value="">Select Type</option>
                                 <option value="HAND LOAN">Hand Loan</option>
+                                <option value="GOLD LOAN">Gold Loan</option>
                                 <option value="PL">Personal Loan (PL)</option>
                                 <option value="HOME LOAN">Home Loan</option>
                                 <option value="CAR LOAN">Car Loan</option>
@@ -103,6 +159,7 @@
                         <select id="filterType">
                             <option value="ALL">All Types</option>
                             <option value="HAND LOAN">Hand Loan</option>
+                            <option value="GOLD LOAN">Gold Loan</option>
                             <option value="PL">Personal Loan</option>
                             <option value="HOME LOAN">Home Loan</option>
                             <option value="CAR LOAN">Car Loan</option>

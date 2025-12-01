@@ -70,8 +70,10 @@ header h1 {
 
 .total-debt p { color: var(--danger-color); }
 .monthly-interest p { color: var(--warning-color); }
-.pending-count p { color: var(--primary-color); }
-.cleared-count p { color: var(--success-color); }
+.total-income p { color: var(--success-color); }
+.pnl-card p { color: var(--primary-color); }
+.pnl-card.negative p { color: var(--danger-color); }
+.pnl-card.positive p { color: var(--success-color); }
 
 .charts-section {
     display: grid;
@@ -320,6 +322,11 @@ tr:hover {
     color: #c2410c;
 }
 
+.type-gold-loan {
+    background: #fef9c3;
+    color: #a16207;
+}
+
 .action-btn {
     padding: 6px 12px;
     border: none;
@@ -397,6 +404,7 @@ tr:hover {
 }
 
 .breakdown-card.hand-loan { border-left-color: #2563eb; }
+.breakdown-card.gold-loan { border-left-color: #eab308; }
 .breakdown-card.pl { border-left-color: #7c3aed; }
 .breakdown-card.home-loan { border-left-color: #0d9488; }
 .breakdown-card.car-loan { border-left-color: #db2777; }
@@ -454,6 +462,140 @@ tr:hover {
     font-size: 1rem;
 }
 
+/* Income Section */
+.income-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.income-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.income-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.income-header h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+.income-form {
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.income-form .form-row {
+    align-items: flex-end;
+    margin-bottom: 0;
+}
+
+.income-form .form-actions {
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
+}
+
+.income-form .form-actions button {
+    padding: 10px 16px;
+}
+
+.income-table-wrapper {
+    overflow-x: auto;
+}
+
+#incomeTable {
+    width: 100%;
+}
+
+#incomeTable th,
+#incomeTable td {
+    padding: 12px 10px;
+}
+
+/* P&L Section */
+.pnl-container {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.pnl-container h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+.pnl-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.pnl-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 8px;
+    background: var(--bg-color);
+}
+
+.pnl-row span:first-child {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.pnl-row span:last-child {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.income-row span:last-child {
+    color: var(--success-color);
+}
+
+.expense-row span:last-child {
+    color: var(--danger-color);
+}
+
+.net-row {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+}
+
+.net-row span:first-child {
+    color: #94a3b8;
+}
+
+.net-row span:last-child {
+    color: white;
+}
+
+.net-row.positive span:last-child {
+    color: #4ade80;
+}
+
+.net-row.negative span:last-child {
+    color: #f87171;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 15px;
@@ -488,5 +630,23 @@ tr:hover {
     .action-btn {
         padding: 4px 8px;
         font-size: 0.75rem;
+    }
+
+    .income-section {
+        grid-template-columns: 1fr;
+    }
+
+    .income-form .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .income-form .form-actions {
+        margin-top: 10px;
+    }
+
+    .pnl-row {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
     }
 }
