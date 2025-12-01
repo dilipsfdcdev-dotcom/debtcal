@@ -1,5 +1,8 @@
 // Debt Management Dashboard - JavaScript
 
+// Data version - increment this when sample data changes to force refresh
+const DATA_VERSION = 2;
+
 // Sample data based on user's updated debt list
 const sampleDebtData = [
     { id: 1, type: 'HAND LOAN', name: 'Rakshith linga', amount: 5000000, interestPM: 150000, clearBy: '', status: 'Pending' },
@@ -66,8 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Load data from localStorage or use sample data
 function loadData() {
+    const storedVersion = localStorage.getItem('dataVersion');
     const storedDebts = localStorage.getItem('debtData');
     const storedIncomes = localStorage.getItem('incomeData');
+
+    // If version changed or no data, reset to sample data
+    if (storedVersion != DATA_VERSION) {
+        resetToDefaultData();
+        return;
+    }
 
     if (storedDebts) {
         debts = JSON.parse(storedDebts);
@@ -82,6 +92,15 @@ function loadData() {
         incomes = [...sampleIncomeData];
         saveIncomeData();
     }
+}
+
+// Reset to default sample data
+function resetToDefaultData() {
+    debts = [...sampleDebtData];
+    incomes = [...sampleIncomeData];
+    localStorage.setItem('dataVersion', DATA_VERSION);
+    saveDebtData();
+    saveIncomeData();
 }
 
 // Save debt data to localStorage
@@ -590,6 +609,19 @@ function deleteIncome(id) {
         updatePnL();
     }
 }
+
+// Reset data button
+document.getElementById('resetDataBtn').addEventListener('click', () => {
+    if (confirm('Are you sure you want to reset all data to defaults? This will remove any changes you have made.')) {
+        resetToDefaultData();
+        renderTable();
+        renderIncomeTable();
+        updateSummary();
+        renderCharts();
+        renderBreakdown();
+        updatePnL();
+    }
+});
 
 // Export functions for global access
 window.editDebt = editDebt;

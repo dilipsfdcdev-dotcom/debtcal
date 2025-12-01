@@ -34,11 +34,35 @@ header {
     margin-bottom: 30px;
 }
 
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
 header h1 {
     font-size: 2rem;
     color: var(--text-primary);
-    margin-bottom: 20px;
-    text-align: center;
+    margin: 0;
+}
+
+.btn-reset {
+    padding: 10px 20px;
+    background: #64748b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-reset:hover {
+    background: #475569;
 }
 
 .summary-cards {
