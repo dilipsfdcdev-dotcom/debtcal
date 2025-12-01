@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCharts();
     renderBreakdown();
     updatePnL();
+    renderClearingSummary();
 });
 
 // Load data from localStorage or use sample data
@@ -430,6 +431,77 @@ function renderBreakdown() {
     `).join('');
 }
 
+// Render clearing summary by year
+function renderClearingSummary() {
+    const pendingDebts = debts.filter(d => d.status === 'Pending');
+    const totalPendingDebt = pendingDebts.reduce((sum, d) => sum + d.amount, 0);
+    const totalMonthlyInterest = pendingDebts.reduce((sum, d) => sum + d.interestPM, 0);
+
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth(); // 0-indexed
+
+    const clearingGrid = document.getElementById('clearingGrid');
+
+    if (pendingDebts.length === 0) {
+        clearingGrid.innerHTML = `
+            <div class="clearing-card clearing-success">
+                <h4>All Clear!</h4>
+                <p>No pending debts</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Calculate clearing amounts for current year and next 3 years
+    const years = [];
+    for (let i = 0; i <= 3; i++) {
+        years.push(currentYear + i);
+    }
+
+    let cardsHtml = '';
+
+    // Immediate clearing card
+    cardsHtml += `
+        <div class="clearing-card clearing-immediate">
+            <h4>Immediate</h4>
+            <div class="clearing-amount">${formatCurrency(totalPendingDebt)}</div>
+            <div class="clearing-detail">Total to clear now</div>
+            <div class="clearing-interest">+ ${formatCurrency(totalMonthlyInterest)}/mo interest</div>
+        </div>
+    `;
+
+    years.forEach(year => {
+        // Calculate months remaining until end of target year
+        const targetDate = new Date(year, 11, 31); // December 31 of target year
+        const monthsRemaining = Math.max(1,
+            (targetDate.getFullYear() - now.getFullYear()) * 12 +
+            (targetDate.getMonth() - now.getMonth()) + 1
+        );
+
+        // Calculate total amount to pay including interest accumulation
+        // Simple model: Principal + (monthly interest × months remaining)
+        const totalWithInterest = totalPendingDebt + (totalMonthlyInterest * monthsRemaining);
+        const monthlyPayment = Math.ceil(totalWithInterest / monthsRemaining);
+
+        const isCurrentYear = year === currentYear;
+        const isPast = monthsRemaining < 1;
+
+        if (!isPast) {
+            cardsHtml += `
+                <div class="clearing-card ${isCurrentYear ? 'clearing-current' : ''}">
+                    <h4>By Dec ${year}</h4>
+                    <div class="clearing-amount">${formatCurrency(monthlyPayment)}</div>
+                    <div class="clearing-detail">per month for ${monthsRemaining} months</div>
+                    <div class="clearing-total">Total: ${formatCurrency(totalWithInterest)}</div>
+                </div>
+            `;
+        }
+    });
+
+    clearingGrid.innerHTML = cardsHtml;
+}
+
 // Form submission for debt
 debtForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -468,6 +540,7 @@ debtForm.addEventListener('submit', (e) => {
     renderCharts();
     renderBreakdown();
     updatePnL();
+    renderClearingSummary();
     debtForm.reset();
 });
 
@@ -517,6 +590,7 @@ confirmDelete.addEventListener('click', () => {
         renderCharts();
         renderBreakdown();
         updatePnL();
+        renderClearingSummary();
     }
     deleteId = null;
     confirmModal.classList.remove('active');
@@ -622,6 +696,7 @@ document.getElementById('resetDataBtn').addEventListener('click', () => {
         renderCharts();
         renderBreakdown();
         updatePnL();
+        renderClearingSummary();
     }
 });
 

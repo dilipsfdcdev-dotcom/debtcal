@@ -620,6 +620,115 @@ tr:hover {
     color: #f87171;
 }
 
+/* Clearing Summary Section */
+.clearing-section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.clearing-section h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.clearing-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.clearing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.clearing-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.clearing-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.clearing-card h4 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.clearing-amount {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.clearing-detail {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.clearing-interest {
+    font-size: 0.8rem;
+    color: var(--warning-color);
+    font-weight: 500;
+}
+
+.clearing-total {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.clearing-immediate {
+    background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+    border-color: #fecaca;
+}
+
+.clearing-immediate .clearing-amount {
+    color: var(--danger-color);
+}
+
+.clearing-current {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-color: #a7f3d0;
+}
+
+.clearing-current .clearing-amount {
+    color: var(--success-color);
+}
+
+.clearing-success {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-color: #a7f3d0;
+}
+
+.clearing-success h4 {
+    color: var(--success-color);
+    font-size: 1.2rem;
+}
+
+.clearing-success p {
+    color: var(--success-color);
+    font-size: 1rem;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 15px;
